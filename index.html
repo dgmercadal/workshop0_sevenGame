@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Seven game</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<h1>Seven Game</h1>
+<p id="result"></p>
+
+<script type="application/javascript">
+
+    var list =[];
+    var number;
+    if (confirm("Do you want to enter a number thru a prompt?")){
+        number = prompt("Enter a number");
+        doCalculate(number);
+    }else{
+
+       document.write("<label for='num'>Insert a number</label><br/>"+
+                        "<input type='number' id='num' name='num' defaultValue='0' autofocus='' /><br/>"+
+                        "<button type='button' onclick='getNumber()'>Aceptar</button>");
+    }
+
+    /**
+    * Returns true if the number passed as parameter is valid. (multiple of 7 or ends whith 7 and greater than 0)
+    * @param number
+    * @returns {boolean}
+    */
+    function isValid(number){
+        if (number > 0 && (number % 7 == 0 || ((number-7) % 10 == 0))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    function getNumber(){
+        number = document.getElementById("num").value;
+        doCalculate(number);
+    }
+
+    /**
+     * If the number is valid, adds it to the array.
+     * @param number
+     */
+    function doCalculate(number) {
+        if (number != null && number > 0) {
+            for (var i = 0; i <= number; i++) {
+                if (isValid(i)) {
+                    list.push(i);
+                }
+            }
+            printRes();
+        }
+    }
+
+    /**
+     * Shows the result on console
+     */
+    function printRes() {
+        console.log(number);
+        console.log(list.sort(function (a, b) {
+            return a - b
+        }));
+    }
+       /* document.write("The number introduced is:",number,"<br/>");
+        document.write("The numbers from 0 to ", number, " that are multiple of 7 or finish with 7 are: <br/>");
+        document.write(list.sort(function (a, b) {
+            return a - b
+        }));
+     }*/
+</script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<!--<script>
+    (function (b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l;
+        b[l] || (b[l] =
+            function () {
+                (b[l].q = b[l].q || []).push(arguments)
+            });
+        b[l].l = +new Date;
+        e = o.createElement(i);
+        r = o.getElementsByTagName(i)[0];
+        e.src = 'https://www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-XXXXX-X', 'auto');
+    ga('send', 'pageview');
+</script>-->
+</body>
+</html>
